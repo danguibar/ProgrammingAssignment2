@@ -1,9 +1,13 @@
 ## Put comments here that give an overall description of what your
 ## functions do
-## functions do
+## setInverse(x)  stores x, the inverse calculated matrix in inverseMat
+## getInverse  returns inverseMat stored matrix
+## getMatrix   returns the last matrix used
+## setMatrix   sets the matrix object to use in inverse calculation
 
 ## Write a short comment describing this function
-
+## makeCacheMatrix sets 2 variable objects that contain matrix being used and the calculated inverse.
+##                 Also, It holds the definitions of the setter and getter functions
 makeCacheMatrix <- function(x = matrix()) {
    
    currentMat <- x
@@ -12,18 +16,20 @@ makeCacheMatrix <- function(x = matrix()) {
    list(
    setInverse = function (y) inverseMat<<- y
    ,
-   getInverse = function()  inverseMat
+   getInverse = function()   inverseMat
    ,
-   getMatrix = function()   currentMat
+   setMatrix =  function(y)  currentMat <<- y
    ,
-   setMatrix =  function(y) currentMat <<- y
+   getMatrix =  function()   currentMat
+   
    )
    
 }
 
 
 ## Write a short comment describing this function
-
+## calls the calculation of inverse and decides when to recalculate it
+## or return the inverse previosly calculated
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
         
@@ -54,8 +60,9 @@ cacheSolve <- function(x, ...) {
         }        
 }
 
-c=matrix(c(2, -1/8, -1/8, 2), nrow=2,ncol=2)
-objmatfun <- makeCacheMatrix(c)
-a<-cacheSolve(objmatfun)
+#example of use
+#c=matrix(c(2, -1/8, -1/8, 2), nrow=2,ncol=2)
+#objmatfun <- makeCacheMatrix(c)
+#a<-cacheSolve(objmatfun)
 
 
